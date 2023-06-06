@@ -17,7 +17,10 @@ const ConnectFour = () => {
     // TODO: check if board is filled - no more moves
     // check if selected column has available moves
     if (gameBoard[0][col]) {
-      setMessage("No available moves here");
+      setMessage("Invalid move");
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
       return;
     } else {
       setMessage("");
@@ -44,6 +47,15 @@ const ConnectFour = () => {
   return (
     <div>
       <h2>Connect 4</h2>
+      <div className="player-turn-container">
+        <div
+          className={
+            isPlayer1Turn ? "player1 player-token" : "player2 player-token"
+          }
+        ></div>
+        <h3>{isPlayer1Turn ? "Player 1" : "Player 2"}</h3>
+      </div>
+      <h4 className="message">{message}</h4>
       <table id="board" cellSpacing={10}>
         {gameBoard.map((row, i) => (
           <tr key={i} className="row">
@@ -58,15 +70,6 @@ const ConnectFour = () => {
           </tr>
         ))}
       </table>
-      <div className="player-turn-container">
-        <div
-          className={
-            isPlayer1Turn ? "player1 player-token" : "player2 player-token"
-          }
-        ></div>
-        <h3>{isPlayer1Turn ? "Player 1" : "Player 2"}</h3>
-      </div>
-      <h4>{message}</h4>
     </div>
   );
 };
