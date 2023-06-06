@@ -58,7 +58,11 @@ const ConnectFour = () => {
           </tr>
         ))}
       </table>
-      <h3>Current Player: {isPlayer1Turn ? "Player 1" : "Player 2"}</h3>
+      <div className="player-turn-container">
+        {/* eslint-disable-next-line prettier/prettier */}
+        <div className={isPlayer1Turn ? "player1 player-token" : "player2 player-token"}></div>
+        <h3>{isPlayer1Turn ? "Player 1" : "Player 2"}</h3>
+      </div>
       <h4>{message}</h4>
     </div>
   );
