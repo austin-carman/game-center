@@ -1,8 +1,6 @@
 import { useState } from "react";
-// import Row from "./Row";
 
 const ConnectFour = () => {
-  // eslint-disable-next-line no-unused-vars
   const [gameBoard, setGameBoard] = useState([
     Array(7).fill(null),
     Array(7).fill(null),
@@ -15,7 +13,16 @@ const ConnectFour = () => {
   const [isPlayer1Turn, setIsPlayer1Turn] = useState(true);
 
   const handleClick = (col) => {
-    console.log(col);
+    const newBoard = [...gameBoard];
+    let row = 5;
+    while (newBoard[row][col] !== null) {
+      row = row - 1;
+    }
+    newBoard[row][col] = isPlayer1Turn ? 1 : 2;
+    setGameBoard(newBoard);
+
+    console.log("check if move results in win");
+
     setIsPlayer1Turn(!isPlayer1Turn);
   };
 
