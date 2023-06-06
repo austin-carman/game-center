@@ -15,6 +15,9 @@ const ConnectFour = () => {
   const [winner, setWinner] = useState(null);
 
   const handleClick = (col) => {
+    if (winner) {
+      return;
+    }
     // TODO: check if board is filled - no more moves
     // check if selected column has available moves
     if (gameBoard[0][col]) {
@@ -56,15 +59,14 @@ const ConnectFour = () => {
   // Check for 4 consecutive tokens horizontally -> returns true or false
   const checkHorizontalWin = (board) => {
     for (let i = 0; i < board.length; i++) {
-      let consecutiveTokens = 1;
+      let count = 1;
       for (let j = 0; j < 6; j++) {
         if (board[i][j] === board[i][j + 1] && board[i][j] !== null) {
-          consecutiveTokens++;
+          count++;
         } else {
-          consecutiveTokens = 1;
+          count = 1;
         }
-        console.log(consecutiveTokens);
-        if (consecutiveTokens === 4) {
+        if (count === 4) {
           return true;
         }
       }
@@ -74,11 +76,24 @@ const ConnectFour = () => {
 
   // Check for 4 consecutive tokens vertically -> returns true or false
   const checkVerticalWin = (board) => {
-    console.log(board);
+    for (let j = 0; j < board[0].length; j++) {
+      let count = 1;
+      for (let i = 0; i < board.length - 1; i++) {
+        if (board[i][j] === board[i + 1][j] && board[i][j] !== null) {
+          count++;
+        } else {
+          count = 1;
+        }
+        if (count === 4) {
+          return true;
+        }
+      }
+    }
     return false;
   };
 
   // Check for 4 consecutive tokens diagonally -> returns true or false
+  // eslint-disable-next-line no-unused-vars
   const checkDiagonalWin = (board) => {
     console.log(board);
     return false;
