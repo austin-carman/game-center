@@ -9,10 +9,14 @@ const ConnectFour = () => {
     Array(7).fill(null),
     Array(7).fill(null),
   ]);
-
   const [isPlayer1Turn, setIsPlayer1Turn] = useState(true);
+  const [message, setMessage] = useState("");
 
   const handleClick = (col) => {
+    if (gameBoard[0][col]) {
+      setMessage("No available moves here");
+      return;
+    }
     const newBoard = [...gameBoard];
     let row = 5;
     while (newBoard[row][col] !== null) {
@@ -50,7 +54,8 @@ const ConnectFour = () => {
           </tr>
         ))}
       </table>
-      <h2>Current Player: {isPlayer1Turn ? "Player 1" : "Player 2"}</h2>
+      <h3>Current Player: {isPlayer1Turn ? "Player 1" : "Player 2"}</h3>
+      <h4>{message}</h4>
     </div>
   );
 };
