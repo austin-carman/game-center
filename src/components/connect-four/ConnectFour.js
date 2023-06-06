@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../styles/ConnectFour.css";
 
 const ConnectFour = () => {
   const [gameBoard, setGameBoard] = useState([
@@ -13,21 +14,31 @@ const ConnectFour = () => {
   const [message, setMessage] = useState("");
 
   const handleClick = (col) => {
+    // TODO: check if board is filled - no more moves
+    // check if selected column has available moves
     if (gameBoard[0][col]) {
       setMessage("No available moves here");
       return;
+    } else {
+      setMessage("");
     }
+    // find first row available in column
     const newBoard = [...gameBoard];
     let row = 5;
     while (newBoard[row][col] !== null) {
       row = row - 1;
     }
+    // assign player to square
     newBoard[row][col] = isPlayer1Turn ? 1 : 2;
     setGameBoard(newBoard);
-
-    console.log("check if move results in win");
-
+    // check if move won game
+    const gameIsOver = checkIfWinningMove(newBoard);
+    console.log(gameIsOver);
     setIsPlayer1Turn(!isPlayer1Turn);
+  };
+
+  const checkIfWinningMove = (board) => {
+    console.log(board);
   };
 
   return (
@@ -40,16 +51,9 @@ const ConnectFour = () => {
               <td
                 key={j}
                 onClick={() => handleClick(j)}
-                style={{
-                  width: "75px",
-                  height: "75px",
-                  border: "1px solid black",
-                  backgroundColor:
-                    square === 1 ? "red" : square === 2 ? "blue" : "white",
-                }}
-              >
-                {square || ""}
-              </td>
+                // eslint-disable-next-line prettier/prettier
+                className={square === 1 ? "red square" : square === 2 ? "blue square" : "white square"}
+              ></td>
             ))}
           </tr>
         ))}
