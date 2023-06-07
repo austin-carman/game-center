@@ -2,17 +2,25 @@ import { useState } from "react";
 import "../../styles/ConnectFour.css";
 
 const ConnectFour = () => {
-  const [gameBoard, setGameBoard] = useState([
-    Array(7).fill(null),
-    Array(7).fill(null),
-    Array(7).fill(null),
-    Array(7).fill(null),
-    Array(7).fill(null),
-    Array(7).fill(null),
-  ]);
-  const [isPlayer1Turn, setIsPlayer1Turn] = useState(true);
-  const [message, setMessage] = useState("");
-  const [winner, setWinner] = useState(null);
+  const initialStates = {
+    gameBoard: [
+      Array(7).fill(null),
+      Array(7).fill(null),
+      Array(7).fill(null),
+      Array(7).fill(null),
+      Array(7).fill(null),
+      Array(7).fill(null),
+    ],
+    isPlayer1Turn: true,
+    message: "",
+    winner: null,
+  };
+  const [gameBoard, setGameBoard] = useState(initialStates.gameBoard);
+  const [isPlayer1Turn, setIsPlayer1Turn] = useState(
+    initialStates.isPlayer1Turn
+  );
+  const [message, setMessage] = useState(initialStates.message);
+  const [winner, setWinner] = useState(initialStates.winner);
 
   const handleClick = (col) => {
     if (winner) {
@@ -37,7 +45,7 @@ const ConnectFour = () => {
     newBoard[row][col] = isPlayer1Turn ? 1 : 2;
     setGameBoard(newBoard);
     // check if move won game
-    const gameIsOver = checkIfWinningMove(newBoard);
+    const gameIsOver = checkIfWin(newBoard);
     if (gameIsOver) {
       setWinner(isPlayer1Turn ? "Player 1" : "Player 2");
       return;
@@ -45,21 +53,12 @@ const ConnectFour = () => {
     setIsPlayer1Turn(!isPlayer1Turn);
   };
 
-  // check if 4 consecutive tokens in any direction -> returns true or false
-  const checkIfWinningMove = (board) => {
-    return checkHorizontalWin(board) ||
-      checkVerticalWin(board) ||
-      checkDiagonalWin(board)
-      ? true
-      : false;
-  };
-
-  // Check for 4 consecutive tokens horizontally -> returns true or false
-  const checkHorizontalWin = (board) => {
+  // Check if 4 consecutive tokens in any direction -> returns true or false
+  const checkIfWin = (board) => {
+    // Check Horizontally
     for (let i = 0; i < board.length; i++) {
       let count = 1;
       for (let j = 0; j < board[0].length; j++) {
-        // for (let j = 0; j < 6; j++) {
         if (board[i][j] === board[i][j + 1] && board[i][j] !== null) {
           count++;
         } else {
@@ -70,11 +69,8 @@ const ConnectFour = () => {
         }
       }
     }
-    return false;
-  };
 
-  // Check for 4 consecutive tokens vertically -> returns true or false
-  const checkVerticalWin = (board) => {
+    // Check vertically
     for (let j = 0; j < board[0].length; j++) {
       let count = 1;
       for (let i = 0; i < board.length - 1; i++) {
@@ -88,11 +84,7 @@ const ConnectFour = () => {
         }
       }
     }
-    return false;
-  };
 
-  // Check for 4 consecutive tokens diagonally -> returns true or false
-  const checkDiagonalWin = (board) => {
     // Check diagonals from top left to bottom right
     for (let i = 0; i < board.length - 3; i++) {
       for (let j = 0; j < board[0].length - 3; j++) {
@@ -124,6 +116,13 @@ const ConnectFour = () => {
     return false;
   };
 
+  const handleReset = () => {
+    setGameBoard(initialStates.gameBoard);
+    setIsPlayer1Turn(initialStates.isPlayer1Turn);
+    setMessage(initialStates.message);
+    setWinner(initialStates.winner);
+  };
+
   return (
     <div>
       <h2>Connect 4</h2>
@@ -135,10 +134,11 @@ const ConnectFour = () => {
         ></div>
         <h3>
           {isPlayer1Turn ? "Player 1" : "Player 2"}
-          {winner && " Wins!"}
+          {winner ? " Wins!" : "'s Turn"}
         </h3>
       </div>
       <h4 className="message">{message}</h4>
+      {winner && <button onClick={handleReset}> Play Again</button>}
       <table id="board" cellSpacing={10}>
         {gameBoard.map((row, i) => (
           <tr key={i} className="row">

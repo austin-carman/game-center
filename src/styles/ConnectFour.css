@@ -37,5 +37,11 @@
   transform: translate(-50%, -50%);
   color: black;
 }
+button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* media queries for board width and aspect-ratio */
