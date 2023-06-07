@@ -1,7 +1,7 @@
 #board {
   border: 5px solid black;
   margin: auto;
-  background-color: purple;
+  background-color: blue;
   width: 50%;
   aspect-ratio: 4/3;
   margin-bottom: 5%;
@@ -9,12 +9,6 @@
 .square {
   border: 1px solid black;
   border-radius: 50%;
-}
-.red {
-  background-color: red;
-}
-.blue {
-  background-color: blue;
 }
 .white {
   background-color: white;
@@ -34,7 +28,7 @@
   background-color: red;
 }
 .player2 {
-  background-color: blue;
+  background-color: yellow;
 }
 .message {
   position: fixed;
@@ -42,17 +36,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: black;
-}
-.winner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
-  /* padding: 3%; */
-  /* border: 1px solid black; */
-  /* background-color: grey; */
-  /* opacity: 0.8; */
 }
 
 /* media queries for board width and aspect-ratio */

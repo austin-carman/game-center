@@ -18,8 +18,6 @@ const ConnectFour = () => {
     if (winner) {
       return;
     }
-    // TODO: check if board is filled - no more moves
-    // check if selected column has available moves
     if (gameBoard[0][col]) {
       setMessage("Invalid move");
       setTimeout(() => {
@@ -60,7 +58,8 @@ const ConnectFour = () => {
   const checkHorizontalWin = (board) => {
     for (let i = 0; i < board.length; i++) {
       let count = 1;
-      for (let j = 0; j < 6; j++) {
+      for (let j = 0; j < board[0].length; j++) {
+        // for (let j = 0; j < 6; j++) {
         if (board[i][j] === board[i][j + 1] && board[i][j] !== null) {
           count++;
         } else {
@@ -93,9 +92,35 @@ const ConnectFour = () => {
   };
 
   // Check for 4 consecutive tokens diagonally -> returns true or false
-  // eslint-disable-next-line no-unused-vars
   const checkDiagonalWin = (board) => {
-    console.log(board);
+    // Check diagonals from top left to bottom right
+    for (let i = 0; i < board.length - 3; i++) {
+      for (let j = 0; j < board[0].length - 3; j++) {
+        if (
+          board[i][j] !== null &&
+          board[i][j] === board[i + 1][j + 1] &&
+          board[i][j] === board[i + 2][j + 2] &&
+          board[i][j] === board[i + 3][j + 3]
+        ) {
+          return true;
+        }
+      }
+    }
+
+    // Check diagonals from top right to bottom left
+    for (let i = 0; i < board.length - 3; i++) {
+      for (let j = board[0].length - 1; j >= 3; j--) {
+        if (
+          board[i][j] !== null &&
+          board[i][j] === board[i + 1][j - 1] &&
+          board[i][j] === board[i + 2][j - 2] &&
+          board[i][j] === board[i + 3][j - 3]
+        ) {
+          return true;
+        }
+      }
+    }
+
     return false;
   };
 
@@ -108,15 +133,12 @@ const ConnectFour = () => {
             isPlayer1Turn ? "player1 player-token" : "player2 player-token"
           }
         ></div>
-        <h3>{isPlayer1Turn ? "Player 1" : "Player 2"}</h3>
+        <h3>
+          {isPlayer1Turn ? "Player 1" : "Player 2"}
+          {winner && " Wins!"}
+        </h3>
       </div>
       <h4 className="message">{message}</h4>
-      {winner && (
-        <div className="winner">
-          <h2>{winner} Wins!</h2>
-          {/* <button>Play Again</button> */}
-        </div>
-      )}
       <table id="board" cellSpacing={10}>
         {gameBoard.map((row, i) => (
           <tr key={i} className="row">
@@ -125,7 +147,7 @@ const ConnectFour = () => {
                 key={j}
                 onClick={() => handleClick(j)}
                 // eslint-disable-next-line prettier/prettier
-                className={square === 1 ? "red square" : square === 2 ? "blue square" : "white square"}
+                className={square === 1 ? "player1 square" : square === 2 ? "player2 square" : "white square"}
               ></td>
             ))}
           </tr>
