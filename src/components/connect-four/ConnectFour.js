@@ -125,20 +125,21 @@ const ConnectFour = () => {
 
   return (
     <div>
-      <h2>Connect 4</h2>
-      <div className="player-turn-container">
-        <div
-          className={
-            isPlayer1Turn ? "player1 player-token" : "player2 player-token"
-          }
-        ></div>
-        <h3>
-          {isPlayer1Turn ? "Player 1" : "Player 2"}
-          {winner ? " Wins!" : "'s Turn"}
-        </h3>
+      <div className="player-reset-container">
+        <div className="player-container">
+          <div
+            className={
+              isPlayer1Turn ? "player1 player-token" : "player2 player-token"
+            }
+          ></div>
+          <h3>
+            {isPlayer1Turn ? "Player 1" : "Player 2"}
+            {winner ? " Wins!" : "'s Turn"}
+          </h3>
+        </div>
+        <button onClick={handleReset}>Reset</button>
       </div>
       <h4 className="message">{message}</h4>
-      {winner && <button onClick={handleReset}> Play Again</button>}
       <table id="board" cellSpacing={10}>
         {gameBoard.map((row, i) => (
           <tr key={i} className="row">
