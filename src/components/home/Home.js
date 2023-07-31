@@ -21,21 +21,33 @@ const Home = () => {
           className="game-container"
           onClick={() => handleSelectGame(connectFour)}
         >
-          <img src="#" alt="Connect Four" />
+          <img
+            // eslint-disable-next-line no-undef
+            src={process.env.PUBLIC_URL + "/connect-four.png"}
+            alt="Connect Four"
+          />
           <h3>Connect Four</h3>
         </div>
         <div
           className="game-container"
           onClick={() => handleSelectGame(ticTacToe)}
         >
-          <img src="#" alt="Tic-Tac-Toe" />
-          <h3>Tic-Tac-Toe</h3>
+          <img
+            // eslint-disable-next-line no-undef
+            src={process.env.PUBLIC_URL + "/tic-tac-toe.png"}
+            alt="Tic Tac Toe"
+          />
+          <h3>Tic Tac Toe</h3>
         </div>
         <div
           className="game-container"
           onClick={() => handleSelectGame(blackJack)}
         >
-          <img src="#" alt="Black Jack" />
+          <img
+            // eslint-disable-next-line no-undef
+            src={process.env.PUBLIC_URL + "/tic-tac-toe.png"}
+            alt="Tic Tac Toe"
+          />
           <h3>Black Jack</h3>
         </div>
       </div>
