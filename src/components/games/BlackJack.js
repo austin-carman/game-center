@@ -1,6 +1,6 @@
 const BlackJack = () => {
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h2>Black Jack: Coming soon</h2>
     </div>
   );
