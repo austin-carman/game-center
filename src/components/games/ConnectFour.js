@@ -127,7 +127,7 @@ const ConnectFour = () => {
   };
 
   return (
-    <div>
+    <div className="connect-four-game">
       <div className="player-reset-container">
         <div className="player-container">
           <div

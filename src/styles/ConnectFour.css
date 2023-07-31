@@ -1,3 +1,11 @@
+.connect-four-game {
+  background-color: white;
+  padding: 2%;
+  width: 90%;
+  margin: auto;
+  border-radius: 10px;
+}
+
 #board {
   border: 5px solid black;
   margin: auto;
@@ -74,6 +82,12 @@ button:hover {
 }
 
 /* media queries */
+@media only screen and (min-width: 750px) {
+  .connect-four-game {
+    width: 70rem;
+  }
+}
+
 @media screen and (min-width: 800px) {
   #board {
     width: 75%;
@@ -82,11 +96,12 @@ button:hover {
     width: 75%;
   }
 }
+
 @media screen and (min-width: 1200px) {
-  #board {
+  /* #board {
     width: 50%;
-  }
+  } */
   .player-reset-container {
-    width: 50%;
+    /* width: 50%; */
   }
 }

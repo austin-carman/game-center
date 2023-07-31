@@ -67,6 +67,7 @@ body{
 	font-size:1.6rem;
 	line-height:1.5;
 	font-family: 'Roboto Mono', monospace;
+  background-color: rgb(37, 37, 146);
 }
 
 h1{
@@ -100,18 +101,22 @@ h6 {
 
 h1 {
   text-align: center;
+  color: white;
 }
 
 .home-games-container {
-  width: 100%;
+  width: 90%;
   margin: 10% auto;
   display: flex;
+  justify-content: center;
+  padding: 4% 2%;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .game-container {
   text-align: center;
   width: 20rem;
-  margin: 0% auto 10%;
 }
 
 .game-container img {
