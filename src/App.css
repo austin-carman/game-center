@@ -119,6 +119,10 @@ h1 {
   border: 1px solid black;
 }
 
+.game-container img:hover {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 500px) {
   .home-games-container {
     margin-top: 5%;

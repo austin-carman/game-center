@@ -4,10 +4,10 @@ import TicTacToe from "../games/TicTacToe";
 import BlackJack from "../games/BlackJack";
 
 const Home = () => {
-  const [activeGame, setActiveGame] = useState();
   const connectFour = "connectFour";
   const ticTacToe = "ticTacToe";
   const blackJack = "blackJack";
+  const [activeGame, setActiveGame] = useState(connectFour);
 
   const handleSelectGame = (game) => {
     setActiveGame(game);
