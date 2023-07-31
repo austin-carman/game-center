@@ -15,19 +15,28 @@ const Home = () => {
 
   return (
     <>
-      <h1>Game Center</h1>
-      <div>
-        <div onClick={() => handleSelectGame(connectFour)}>
+      <h1 className="home-title">Game Center</h1>
+      <div className="home-games-container">
+        <div
+          className="game-container"
+          onClick={() => handleSelectGame(connectFour)}
+        >
           <img src="#" alt="Connect Four" />
           <h3>Connect Four</h3>
           <p>Officia quis cupidatat Lorem occaecat esse amet non mollit.</p>
         </div>
-        <div onClick={() => handleSelectGame(ticTacToe)}>
+        <div
+          className="game-container"
+          onClick={() => handleSelectGame(ticTacToe)}
+        >
           <img src="#" alt="Tic-Tac-Toe" />
           <h3>Tic-Tac-Toe</h3>
           <p>Officia quis cupidatat Lorem occaecat esse amet non mollit.</p>
         </div>
-        <div onClick={() => handleSelectGame(blackJack)}>
+        <div
+          className="game-container"
+          onClick={() => handleSelectGame(blackJack)}
+        >
           <img src="#" alt="Black Jack" />
           <h3>Black Jack</h3>
           <p>Officia quis cupidatat Lorem occaecat esse amet non mollit.</p>
