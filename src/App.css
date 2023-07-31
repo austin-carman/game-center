@@ -121,5 +121,17 @@ h1 {
 @media only screen and (min-width: 500px) {
   .home-games-container {
     display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .game-container {
+    margin-bottom: 2%;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .home-games-container {
+    /* border: 1px solid red; */
+    width: 70rem;
   }
 }
