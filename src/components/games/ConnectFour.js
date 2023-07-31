@@ -23,9 +23,11 @@ const ConnectFour = () => {
   const [winner, setWinner] = useState(initialStates.winner);
 
   const handleClick = (col) => {
+    // if the game has already been won, don't allow more moves
     if (winner) {
       return;
     }
+    // If the column is full, show "Invalid move" to user
     if (gameBoard[0][col]) {
       setMessage("Invalid move");
       setTimeout(() => {
@@ -116,6 +118,7 @@ const ConnectFour = () => {
     return false;
   };
 
+  // reset state for new game
   const handleReset = () => {
     setGameBoard(initialStates.gameBoard);
     setIsPlayer1Turn(initialStates.isPlayer1Turn);
@@ -132,7 +135,7 @@ const ConnectFour = () => {
               isPlayer1Turn ? "player1 player-token" : "player2 player-token"
             }
           ></div>
-          <h3>
+          <h3 style={{ color: winner && "red" }}>
             {isPlayer1Turn ? "Player 1" : "Player 2"}
             {winner ? " Wins!" : "'s Turn"}
           </h3>
@@ -141,18 +144,20 @@ const ConnectFour = () => {
       </div>
       <h4 className="message">{message}</h4>
       <table id="board" cellSpacing={10}>
-        {gameBoard.map((row, i) => (
-          <tr key={i} className="row">
-            {row.map((square, j) => (
-              <td
-                key={j}
-                onClick={() => handleClick(j)}
-                // eslint-disable-next-line prettier/prettier
-                className={square === 1 ? "player1 square" : square === 2 ? "player2 square" : "white square"}
-              ></td>
-            ))}
-          </tr>
-        ))}
+        <tbody>
+          {gameBoard.map((row, i) => (
+            <tr key={i} className="row">
+              {row.map((square, j) => (
+                <td
+                  key={j}
+                  onClick={() => handleClick(j)}
+                  // eslint-disable-next-line prettier/prettier
+                  className={square === 1 ? "player1 square" : square === 2 ? "player2 square" : "white square"}
+                ></td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
