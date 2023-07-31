@@ -98,3 +98,16 @@ h6 {
 /* HOME.JS STYLES */
 /* ======================================= */
 
+h1 {
+  text-align: center;
+}
+
+.home-games-container {
+  width: 90%;
+  margin: 10% auto;
+}
+
+.game-container {
+  text-align: center;
+  margin-bottom: 5%;
+}
