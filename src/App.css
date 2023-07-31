@@ -103,8 +103,9 @@ h1 {
 }
 
 .home-games-container {
-  width: 90%;
+  width: 100%;
   margin: 10% auto;
+  display: flex;
 }
 
 .game-container {
@@ -120,7 +121,6 @@ h1 {
 
 @media only screen and (min-width: 500px) {
   .home-games-container {
-    display: flex;
     margin-top: 5%;
     margin-bottom: 5%;
   }
