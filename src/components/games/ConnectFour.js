@@ -141,18 +141,20 @@ const ConnectFour = () => {
       </div>
       <h4 className="message">{message}</h4>
       <table id="board" cellSpacing={10}>
-        {gameBoard.map((row, i) => (
-          <tr key={i} className="row">
-            {row.map((square, j) => (
-              <td
-                key={j}
-                onClick={() => handleClick(j)}
-                // eslint-disable-next-line prettier/prettier
-                className={square === 1 ? "player1 square" : square === 2 ? "player2 square" : "white square"}
-              ></td>
-            ))}
-          </tr>
-        ))}
+        <tbody>
+          {gameBoard.map((row, i) => (
+            <tr key={i} className="row">
+              {row.map((square, j) => (
+                <td
+                  key={j}
+                  onClick={() => handleClick(j)}
+                  // eslint-disable-next-line prettier/prettier
+                  className={square === 1 ? "player1 square" : square === 2 ? "player2 square" : "white square"}
+                ></td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
